@@ -12,12 +12,20 @@ namespace CompetentumWebApp.Models
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
         [Display(Name = "Источник")]
-        public string Source { get; set; }//источник
-        
+        public string Source { get; set; }
+
+        public int? StateId { get; set; }//статус
+        public State State { get; set; }
+
         [Display(Name = "Дата смены статуса")]
         public string StateDate { get; set; }
         [Display(Name = "Дата собеседования")]
         public string InterviewDate { get; set; }
+
+        //внешний ключ для связанных вакансий
+
+        [Display(Name = "Комментарий")]
+        public string Commentary { get; set; }
 
         //public class User
         //{
@@ -29,17 +37,13 @@ namespace CompetentumWebApp.Models
         public string first_name { get; set; }
         [Display(Name = "Отчество")]
         public string middle_name { get; set; }
-        [Display(Name = "Возраст")]
-        public int age { get; set; }
+        [Display(Name = "Пол")]
+        public string gender_Name { get; set; }//Название пола gender.name
+        //[Display(Name = "Возраст")]
+        //public int age { get; set; }
         [Display(Name = "Дата рождения")]
         public string birth_date { get; set; }
-        //}
 
-        //public class Gender
-        //{
-        //    public string id { get; set; }
-        //    public string name { get; set; }
-        //}
 
         //public class Area
         //{
@@ -62,8 +66,8 @@ namespace CompetentumWebApp.Models
         //public class RelocationType
         //{
         //public string RelocationId { get; set; }//Идентификатор типа готовности к переезду relocation.type.id
-        [Display(Name = "Готов к переезду")]
-        public string RelocationName { get; set; }//Название типа готовности к переезду relocation.type.name
+        //[Display(Name = "Готов к переезду")]
+        //public string RelocationName { get; set; }//Название типа готовности к переезду relocation.type.name
                                                   //}
 
         //public class Area2
@@ -82,9 +86,9 @@ namespace CompetentumWebApp.Models
         //public class BusinessTripReadiness
         //{
         //public string ReadinessId { get; set; }//Идентификатор типа готовности к командировкам business_trip_readiness.id
-        [Display(Name = "Готов к командировкам")]
-        public string IsTripReadyName { get; set; }//Название типа готовности к командировкам business_trip_readiness.name
-                                                   //}
+        //[Display(Name = "Готов к командировкам")]
+        //public string IsTripReadyName { get; set; }//Название типа готовности к командировкам business_trip_readiness.name
+        //}
 
         //public class Type2
         //{
@@ -134,7 +138,7 @@ namespace CompetentumWebApp.Models
         //public class Specialization
         //{
         //    public string id { get; set; }
-        [Display(Name = "Специальность")]
+        [Display(Name = "Должность")]
         public string SpecializationName { get; set; }//Название специализации specialization[].name
         //    public string profarea_id { get; set; }
 
@@ -152,27 +156,27 @@ namespace CompetentumWebApp.Models
 
         public int? CurrencyId { get; set; }
         public Currency Currency { get; set; }//Идентификатор валюты salary.currency
-        
+
         //}
 
         //public class Employment
         //{
         //    public string id { get; set; }
-        [Display(Name = "Подходящий тип занятости")]
+        [Display(Name = "Подходящий тип занятости")]//переделать в таблицу
         public string EmploymentName { get; set; }//Название типа занятости employments[].name
         //}
 
         //public class Schedule
         //{
         //    public string id { get; set; }
-        [Display(Name = "График работы")]
+        [Display(Name = "График работы")]//переделать в таблицу
         public string ScheduleName { get; set; }//Название графика работы schedules[].name
         //}
 
         //public class Elementary
         //{
         //[Display(Name = "Учебное заведение")]
-        [HiddenInput(DisplayValue = false)]
+        [HiddenInput(DisplayValue = false)]//переделать в таблицу с выбором уровня образования
         public string ElementaryName { get; set; }//Название учебного заведения education.elementary[].name
         //[Display(Name = "Год Выпуска")]
         [HiddenInput(DisplayValue = false)]
@@ -266,13 +270,13 @@ namespace CompetentumWebApp.Models
         //    public List<Industry> industries { get; set; }
         [Display(Name = "Должность")]
         public string ExperiencePosition { get; set; }//Должность experience[].position
-        [Display(Name = "Дата начала работы")]
-        public string ExperienceStart { get; set; }//Начало работы experience[].start
-        [Display(Name = "Дата окончания работы")]
-        public string ExperienceEnd { get; set; }//Окончание работы.null - если работает по настоящее время. experience[].end
-        [Display(Name = "Выполняемые обязанности")]
-        public string ExperienceDescription { get; set; }//Обязанности, функции, достижения experience[].description
-                                                         //}
+        //[Display(Name = "Дата начала работы")]
+        //public string ExperienceStart { get; set; }//Начало работы experience[].start
+        //[Display(Name = "Дата окончания работы")]
+        //public string ExperienceEnd { get; set; }//Окончание работы.null - если работает по настоящее время. experience[].end
+        //[Display(Name = "Выполняемые обязанности")]
+        //public string ExperienceDescription { get; set; }//Обязанности, функции, достижения experience[].description
+        //}
 
         //public class TotalExperience
         //{
@@ -286,16 +290,16 @@ namespace CompetentumWebApp.Models
         //{
         //    public string url { get; set; }
         //    public string id { get; set; }
-        [Display(Name = "Гражданство")]
-        public string CitizenshipName { get; set; }//Гражданство citizenship[].name
+        //[Display(Name = "Гражданство")]
+        //public string CitizenshipName { get; set; }//Гражданство citizenship[].name
         //}
 
         //public class WorkTicket
         //{
         //    public string url { get; set; }
         //    public string id { get; set; }
-        [Display(Name = "Регион, для которого есть разрешение на работу")]
-        public string WorkTicketName { get; set; }//Регион и разрешение на работу work_ticket[].name
+        //[Display(Name = "Регион, для которого есть разрешение на работу")]
+        //public string WorkTicketName { get; set; }//Регион и разрешение на работу work_ticket[].name
                                                   //}
 
         //public class TravelTime
@@ -360,7 +364,5 @@ namespace CompetentumWebApp.Models
         //    public string updated_at { get; set; }
         //}
 
-    public int? StateId { get; set; }
-    public State State { get; set; }
     }
 }

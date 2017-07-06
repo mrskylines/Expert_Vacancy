@@ -244,6 +244,10 @@
     <Compile Include="Migrations\201707041419043_MigrateDB1.Designer.cs">
       <DependentUpon>201707041419043_MigrateDB1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707061421554_MigrateDB5.cs" />
+    <Compile Include="Migrations\201707061421554_MigrateDB5.Designer.cs">
+      <DependentUpon>201707061421554_MigrateDB5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\Resume.cs" />
@@ -893,6 +897,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707041419043_MigrateDB1.resx">
       <DependentUpon>201707041419043_MigrateDB1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707061421554_MigrateDB5.resx">
+      <DependentUpon>201707061421554_MigrateDB5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
