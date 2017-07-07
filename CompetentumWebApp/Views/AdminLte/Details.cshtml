@@ -4,13 +4,13 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Резюме @Html.DisplayFor(model => model.last_name) @Html.DisplayFor(model => model.first_name) @Html.DisplayFor(model => model.middle_name)</h2>
-<h2>Должность @Html.DisplayFor(model => model.SpecializationName)</h2>
+<h2>Резюме</h2> <h4>@Html.DisplayFor(model => model.last_name) @Html.DisplayFor(model => model.first_name) @Html.DisplayFor(model => model.middle_name)</h4> 
+<h2>Должность - @Html.DisplayFor(model => model.SpecializationName)</h2>
 <br />
 
 <div style="width:100%">
     <h4>Основная информация</h4>
-    <div class="table-responsive" style="width:50%">
+    <div class="table-responsive" style="width:45%">
         <table class="table table-bordered table-hover">
             <tr>
                 <th @*width=20%*@>
@@ -87,7 +87,7 @@
     </div>
 
     <h4>Ожидания</h4>
-    <div class="table-responsive" style="width:50%">
+    <div class="table-responsive" style="width:45%">
         <table class="table table-bordered table-hover">
             <tr>
                 <th @*width=20%*@>
@@ -109,25 +109,25 @@
 
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.ScheduleName)
+                    @Html.DisplayNameFor(model => model.Schedule.ScheduleName)
                 </th>
                 <th>
-                    @Html.DisplayFor(model => model.ScheduleName)
+                    @Html.DisplayFor(model => model.Schedule.ScheduleName)
                 </th>
             </tr>
 
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.EmploymentName)
+                    @Html.DisplayNameFor(model => model.EmploymentName.Employement_Name)
                 </th>
                 <th>
-                    @Html.DisplayFor(model => model.EmploymentName)
+                    @Html.DisplayFor(model => model.EmploymentName.Employement_Name)
                 </th>
             </tr>
         </table>
     </div>
 
-    <div class="table-responsive" style="width:50%">
+    <div class="table-responsive" style="width:45%">
         <table class="table table-bordered table-hover">
             <tr>
                 <th>
@@ -139,14 +139,14 @@
             </tr>
 
             @*здесь должна быть подключена таблица, и должен выводиться уровень образования*@
-            <tr>
+            @*<tr>
                 <th>
                     @Html.DisplayNameFor(model => model.PrimaryName)
                 </th>
                 <th>
                     @Html.DisplayFor(model => model.PrimaryName)
                 </th>
-            </tr>
+            </tr>*@
 
             <tr>
                 <th>
@@ -157,24 +157,24 @@
                 </th>
             </tr>
 
-            <tr>
+            @*<tr>
                 <th>
                     @Html.DisplayNameFor(model => model.LanguageName)
                 </th>
                 <th>
                     @Html.DisplayFor(model => model.LanguageName)
                 </th>
-            </tr>
+            </tr>*@
 
             @*здесь должна быть подключена таблица, и должен выводиться уровень владения языком*@
-            <tr>
+            @*<tr>
                 <th>
                     @Html.DisplayNameFor(model => model.LanguageLevel)
                 </th>
                 <th>
                     @Html.DisplayFor(model => model.LanguageLevel)
                 </th>
-            </tr>
+            </tr>*@
 
             @*<tr>
                 <th>
@@ -299,9 +299,10 @@
                 </th>
             </tr>*@
         </table>
+    </div>
 
         <h4>История взаимодействия с кандидатом</h4>
-        <div class="table-responsive" style="width:50%">
+        <div class="table-responsive" style="width:45%">
             <table class="table table-bordered table-hover">
                 <tr>
                     <th @*width=20%*@>
@@ -351,14 +352,47 @@
         </div>
 
 <h4>Связанные вакансии</h4>
+        <div class="table-responsive" style="width:80%">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th width=40%>
+                        Название
+                    </th>
+                    
+                    <th width=20%>
+                        Регион
+                    </th>
+
+                    <th width=40%>
+                        Направление работы
+                    </th>
+
+                </tr>
+
+            </table>
+        </div>
 
 <h4>Предложение</h4>
+        <div class="table-responsive" style="width:80%">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th width=60%>
+                        На испытательный срок
+                    </th>
 
-    </div>
+                    <th width=40%>
+                        После испытательного срока
+                    </th>
+
+                </tr>
+            </table>
+        </div>
+
 </div>
+
 <p>
     @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |*@
-    @Html.ActionLink("Back to List", "ResumeView")
+    @Html.ActionLink("Обратно к базе резюме", "ResumeView")
 </p>
 
 @section scripts {

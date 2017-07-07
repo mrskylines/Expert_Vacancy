@@ -22,7 +22,7 @@ namespace CompetentumWebApp.Models
         [Display(Name = "Дата собеседования")]
         public string InterviewDate { get; set; }
 
-        //внешний ключ для связанных вакансий
+        //добавить внешний ключ для связанных вакансий
 
         [Display(Name = "Комментарий")]
         public string Commentary { get; set; }
@@ -162,26 +162,32 @@ namespace CompetentumWebApp.Models
         //public class Employment
         //{
         //    public string id { get; set; }
-        [Display(Name = "Подходящий тип занятости")]//переделать в таблицу
-        public string EmploymentName { get; set; }//Название типа занятости employments[].name
+        //[Display(Name = "Подходящий тип занятости")]//переделать в таблицу
+        //public string EmploymentName { get; set; }//Название типа занятости employments[].name
         //}
+        public int? EmploymentName_Id { get; set; }//название типа занятости
+        public EmploymentName EmploymentName { get; set; }
 
         //public class Schedule
         //{
         //    public string id { get; set; }
-        [Display(Name = "График работы")]//переделать в таблицу
-        public string ScheduleName { get; set; }//Название графика работы schedules[].name
+        //[Display(Name = "График работы")]//переделать в таблицу
+        //public string ScheduleName { get; set; }//Название графика работы schedules[].name
         //}
+        public int? ScheduleId { get; set; }//название графика работы
+        public Schedule Schedule { get; set; }
 
         //public class Elementary
         //{
         //[Display(Name = "Учебное заведение")]
-        [HiddenInput(DisplayValue = false)]//переделать в таблицу с выбором уровня образования
-        public string ElementaryName { get; set; }//Название учебного заведения education.elementary[].name
+        //[HiddenInput(DisplayValue = false)]//переделать в таблицу с выбором уровня образования
+        //public string ElementaryName { get; set; }//Название учебного заведения education.elementary[].name
         //[Display(Name = "Год Выпуска")]
-        [HiddenInput(DisplayValue = false)]
-        public int ElementaryYear { get; set; }//Год окончания education.elementary[].year
+        //[HiddenInput(DisplayValue = false)]
+        //public int ElementaryYear { get; set; }//Год окончания education.elementary[].year
         //}
+        public int? educationalLevelId { get; set; }//Название уровня образования education.level.name
+        public educationalLevel educationalLevel { get; set; }
 
         //public class Additional
         //{
@@ -201,24 +207,24 @@ namespace CompetentumWebApp.Models
 
         //public class Primary
         //{
-        [Display(Name = "Высшее образование")]
-        public string PrimaryName { get; set; }//Название учебного заведения education.primary[].name
+        //[Display(Name = "Высшее образование")]
+        //public string PrimaryName { get; set; }//Название учебного заведения education.primary[].name
         //    public string name_id { get; set; }
-        [Display(Name = "Факультет")]
-        public string PrimaryOrganization { get; set; }//Факультет education.primary[].organization
+        //[Display(Name = "Факультет")]
+        //public string PrimaryOrganization { get; set; }//Факультет education.primary[].organization
         //    public string organization_id { get; set; }
-        [Display(Name = "Специальность")]
-        public string PrimaryResult { get; set; }//Специальность / специализация education.primary[].result
+        //[Display(Name = "Специальность")]
+        //public string PrimaryResult { get; set; }//Специальность / специализация education.primary[].result
         //    public object result_id { get; set; }
-        [Display(Name = "Год Выпуска")]
-        public int PrimaryYear { get; set; }//Год окончания education.primary[].year
+        //[Display(Name = "Год Выпуска")]
+        //public int PrimaryYear { get; set; }//Год окончания education.primary[].year
         //}
 
         //public class Level
         //{
         //    public string id { get; set; }
-        [HiddenInput(DisplayValue = false)]
-        public string LevelName { get; set; }//Название уровня образования education.level.name
+        //[HiddenInput(DisplayValue = false)]
+        //public string LevelName { get; set; }//Название уровня образования education.level.name
         //}
 
         //public class Education
@@ -239,27 +245,34 @@ namespace CompetentumWebApp.Models
         //public class Language
         //{
         //    public string id { get; set; }
-        [Display(Name = "Знание языков")]
-        public string LanguageName { get; set; }//Название языка language[].name
-        [Display(Name = "Уровень знания")]
-        public string LanguageLevel { get; set; }//Уровень знания языка language[].level
+        //[Display(Name = "Знание языков")]
+        //public string LanguageName { get; set; }//Название языка language[].name
+        //[Display(Name = "Уровень знания")]
+        //public string LanguageLevel { get; set; }//Уровень знания языка language[].level
         //}
+
+        public int? languageId { get; set; }//Название уровня образования education.level.name
+        public language language { get; set; }
+
+        public int? languageLevelId { get; set; }//Название уровня образования education.level.name
+        public languageLevel languageLevel { get; set; }
 
         //public class Area3
         //{
         //    public string url { get; set; }
         //    public string id { get; set; }
-        [Display(Name = "Регион работодателя")]
-        public string IndustryAreaName { get; set; }//Название региона работодателя experience[].area.name
+        //[Display(Name = "Регион работодателя")]
+        //public string IndustryAreaName { get; set; }//Название региона работодателя experience[].area.name
         //}
 
         //public class Industry
         //{
         //    public string id { get; set; }
-        [Display(Name = "Название отрасли компании")]
-        public string IndustryName { get; set; }//Название отрасли experience[].industries[].name
+        //[Display(Name = "Название отрасли компании")]
+        //public string IndustryName { get; set; }//Название отрасли experience[].industries[].name
         //}
 
+        //Опыт работы
         //public class Experience
         //{
         [Display(Name = "Название компании")]

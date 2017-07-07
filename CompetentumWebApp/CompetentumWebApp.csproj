@@ -248,10 +248,27 @@
     <Compile Include="Migrations\201707061421554_MigrateDB5.Designer.cs">
       <DependentUpon>201707061421554_MigrateDB5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707071018066_MigrateDB6.cs" />
+    <Compile Include="Migrations\201707071018066_MigrateDB6.Designer.cs">
+      <DependentUpon>201707071018066_MigrateDB6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707071043436_MigrateDB7.cs" />
+    <Compile Include="Migrations\201707071043436_MigrateDB7.Designer.cs">
+      <DependentUpon>201707071043436_MigrateDB7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707071259114_MigrateDB8.cs" />
+    <Compile Include="Migrations\201707071259114_MigrateDB8.Designer.cs">
+      <DependentUpon>201707071259114_MigrateDB8.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Currency.cs" />
+    <Compile Include="Models\educationalLevel.cs" />
+    <Compile Include="Models\EmploymentName.cs" />
+    <Compile Include="Models\language.cs" />
+    <Compile Include="Models\languageLevel.cs" />
     <Compile Include="Models\Resume.cs" />
     <Compile Include="Models\ResumeContext.cs" />
+    <Compile Include="Models\Schedule.cs" />
     <Compile Include="Models\State.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -876,11 +893,12 @@
     <Content Include="Views\AdminLte\Colors.cshtml" />
     <Content Include="Views\AdminLte\_Index.cshtml" />
     <Content Include="Views\AdminLte\Index.cshtml" />
-    <Content Include="Views\AdminLte\Create.cshtml" />
+    <Content Include="Views\AdminLte\oldCreate.cshtml" />
     <Content Include="Views\AdminLte\Edit.cshtml" />
     <Content Include="Views\AdminLte\Details.cshtml" />
     <Content Include="Views\AdminLte\ResumeView.cshtml" />
     <Content Include="Views\AdminLte\HeadHunter.cshtml" />
+    <Content Include="Views\AdminLte\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201707021633444_InitialCreate.resx">
@@ -900,6 +918,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707061421554_MigrateDB5.resx">
       <DependentUpon>201707061421554_MigrateDB5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707071018066_MigrateDB6.resx">
+      <DependentUpon>201707071018066_MigrateDB6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707071043436_MigrateDB7.resx">
+      <DependentUpon>201707071043436_MigrateDB7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707071259114_MigrateDB8.resx">
+      <DependentUpon>201707071259114_MigrateDB8.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
