@@ -18,5 +18,6 @@ namespace CompetentumWebApp.Models
         public DbSet<language> languages { get; set; }
         public DbSet<Source> Sources { get; set; }
         public DbSet<Gender> Genders { get; set; }
+        public DbSet<language> language { get; set; }
     }
 }

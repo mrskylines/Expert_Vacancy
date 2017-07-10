@@ -157,23 +157,25 @@
                 </th>
             </tr>
 
-            <tr>
+            @*<tr>
                 <th>
                     @Html.DisplayNameFor(model => model.language.list_name)
                 </th>
                 <th>
                     @Html.DisplayFor(model => model.language.list_name)
                 </th>
-            </tr>
+            </tr>*@
 
             <tr>
+            @*здесь должна быть подключена таблица, и должен выводиться уровень владения языком*@
+            @*<tr>
                 <th>
                     @Html.DisplayNameFor(model => model.languageLevel.Level_name)
                 </th>
                 <th>
                     @Html.DisplayFor(model => model.languageLevel.Level_name, ViewBag.LanguageLevels as SelectList)
                 </th>
-            </tr>
+            </tr>*@
 
             @*<dt>
                 @Html.DisplayNameFor(model => model.ElementaryName)

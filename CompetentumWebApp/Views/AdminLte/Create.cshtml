@@ -18,6 +18,11 @@
             @Html.LabelFor(model => model.Source.SourceName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.SourceId, ViewBag.Sources as SelectList)
+            @Html.LabelFor(model => model.Source, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("myList", new SelectList(new[] { "Создано", "Обратился" }))
+                @*@Html.EditorFor(model => model.Source, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Source, "", new { @class = "text-danger" })*@
             </div>
         </div>
 
@@ -80,6 +85,9 @@
             @Html.LabelFor(model => model.Gender.GenderName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.GenderId, ViewBag.Genders as SelectList)
+            @Html.LabelFor(model => model.gender_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("myList", new SelectList(new[] { "Мужской", "Женский" }))
             </div>
         </div>
 
@@ -150,6 +158,7 @@
             @Html.LabelFor(model => model.EmploymentName.Employement_Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.EmploymentNameId, ViewBag.EmploymentNames as SelectList)
+                @Html.DropDownListFor(model => model.EmploymentName_Id, ViewBag.EmploymentNames as SelectList)
             </div>
         </div>
 
@@ -164,6 +173,8 @@
             @Html.LabelFor(model => model.educationalLevel.name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.educationalLevelId, ViewBag.educationalLevels as SelectList)
+                @Html.EditorFor(model => model.educationalLevel.name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.educationalLevel.name, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -171,6 +182,7 @@
             @Html.LabelFor(model => model.language.list_name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.languageId, ViewBag.languages as SelectList)
+                @Html.EditorFor(model => model.language.list_name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.language.list_name, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -179,6 +191,7 @@
             @Html.LabelFor(model => model.languageLevel.Level_name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.languageLevelId, ViewBag.LanguageLevels as SelectList)
+                @Html.EditorFor(model => model.languageLevel.Level_name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.languageLevel.Level_name, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -216,5 +229,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "ResumeView")
+    @Html.ActionLink("Back to List", "Index")
 </div>

@@ -43,6 +43,7 @@ namespace AdminLteMvc.Controllers
                 .Include(p => p.language)
                 .Include(p => p.Source)
                 .Include(p => p.Gender);
+                .Include(p => p.language);
             return View(resumes.ToList());
         }
 
@@ -75,6 +76,9 @@ namespace AdminLteMvc.Controllers
 
             SelectList genders = new SelectList(db.Genders, "Id", "GenderName");
             ViewBag.Genders = genders;
+
+            SelectList languages = new SelectList(db.language, "Id", "list_name");
+            ViewBag.languages = languages;
 
             return View();
         }

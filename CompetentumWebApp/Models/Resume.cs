@@ -169,6 +169,7 @@ namespace CompetentumWebApp.Models
         //public string EmploymentName { get; set; }//Название типа занятости employments[].name
         //}
         public int? EmploymentNameId { get; set; }//название типа занятости
+        public int? EmploymentName_Id { get; set; }//название типа занятости
         public EmploymentName EmploymentName { get; set; }
 
         //public class Schedule

@@ -910,6 +910,7 @@
     <Content Include="Views\AdminLte\Index.cshtml" />
     <Content Include="Views\AdminLte\oldCreate.cshtml" />
     <Content Include="Views\AdminLte\oldEdit.cshtml" />
+    <Content Include="Views\AdminLte\Edit.cshtml" />
     <Content Include="Views\AdminLte\Details.cshtml" />
     <Content Include="Views\AdminLte\ResumeView.cshtml" />
     <Content Include="Views\AdminLte\HeadHunter.cshtml" />
