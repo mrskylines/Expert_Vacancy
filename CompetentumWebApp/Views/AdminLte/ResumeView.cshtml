@@ -11,16 +11,10 @@
     <table class="table table-bordered table-hover">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.last_name)
+                ФИО
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.first_name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.middle_name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.gender_Name)
+                @Html.DisplayNameFor(model => model.Gender.GenderName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.birth_date)
@@ -47,6 +41,9 @@
                 @Html.DisplayNameFor(model => model.InterviewDate)
             </th>
 
+            <th>
+                Связанные вакансии
+            </th>
             @*нужны связанные вакансии*@
 
             <th>
@@ -60,16 +57,13 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.last_name)
+                    
+                    <p>@Html.DisplayFor(modelItem => item.last_name)</p>
+                    <p>@Html.DisplayFor(modelItem => item.first_name)</p> 
+                    <p>@Html.DisplayFor(modelItem => item.middle_name)</p> 
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.first_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.middle_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.gender_Name)
+                    @Html.DisplayFor(modelItem => item.Gender.GenderName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.birth_date)
@@ -96,11 +90,13 @@
                     @Html.DisplayFor(modelItem => item.InterviewDate)
                 </td>
 
-                @*нужны связанные вакансии*@
+                <td>
+                    @*нужны связанные вакансии*@
+                </td>
 
-                <th>
+                <td>
                     @Html.DisplayFor(modelItem => item.Commentary)
-                </th>
+                </td>
                 
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

@@ -35,7 +35,14 @@ namespace AdminLteMvc.Controllers
         {
             var resumes = db.Resumes
                 .Include(p => p.State)
-                .Include(p => p.Currency);
+                .Include(p => p.Currency)
+                .Include(p => p.Schedule)
+                .Include(p => p.EmploymentName)
+                .Include(p => p.educationalLevel)
+                .Include(p => p.languageLevel)
+                .Include(p => p.language)
+                .Include(p => p.Source)
+                .Include(p => p.Gender);
             return View(resumes.ToList());
         }
 
@@ -47,6 +54,28 @@ namespace AdminLteMvc.Controllers
 
             SelectList currencies = new SelectList(db.Currencies, "Id", "CurrencyName");
             ViewBag.Currencies = currencies;
+
+            SelectList schedules = new SelectList(db.Schedules, "Id", "ScheduleName");
+            ViewBag.Schedules = schedules;
+
+            SelectList empoymentnames = new SelectList(db.EmploymentNames, "Id", "Employement_Name");
+            ViewBag.EmploymentNames = empoymentnames;
+
+            SelectList educationallevels = new SelectList(db.educationalLevels, "Id", "name");
+            ViewBag.educationalLevels = educationallevels;
+
+            SelectList languagelevels = new SelectList(db.languageLevels, "Id", "Level_name");
+            ViewBag.languageLevels = languagelevels;
+
+            SelectList languages = new SelectList(db.languages, "Id", "list_name");
+            ViewBag.languages = languages;
+
+            SelectList sources = new SelectList(db.Sources, "Id", "SourceName");
+            ViewBag.Sources = sources;
+
+            SelectList genders = new SelectList(db.Genders, "Id", "GenderName");
+            ViewBag.Genders = genders;
+
             return View();
         }
 
@@ -76,6 +105,28 @@ namespace AdminLteMvc.Controllers
 
                 SelectList currencies = new SelectList(db.Currencies, "Id", "CurrencyName");
                 ViewBag.Currencies = currencies;
+
+                SelectList schedules = new SelectList(db.Schedules, "Id", "ScheduleName");
+                ViewBag.Schedules = schedules;
+
+                SelectList empoymentnames = new SelectList(db.EmploymentNames, "Id", "Employement_Name");
+                ViewBag.EmploymentNames = empoymentnames;
+
+                SelectList educationallevels = new SelectList(db.educationalLevels, "Id", "name");
+                ViewBag.educationalLevels = educationallevels;
+
+                SelectList languagelevels = new SelectList(db.languageLevels, "Id", "Level_name");
+                ViewBag.languageLevels = languagelevels;
+
+                SelectList languages = new SelectList(db.languages, "Id", "list_name");
+                ViewBag.languages = languages;
+
+                SelectList sources = new SelectList(db.Sources, "Id", "SourceName");
+                ViewBag.Sources = sources;
+
+                SelectList genders = new SelectList(db.Genders, "Id", "GenderName");
+                ViewBag.Genders = genders;
+
                 return View(user);
             }
             return RedirectToAction("ResumeView");
@@ -106,14 +157,25 @@ namespace AdminLteMvc.Controllers
             return RedirectToAction("ResumeView");
         }
 
-        public ActionResult Details(int id = 0)
+        public ActionResult Details(int? id)
         {
-            Resume user = db.Resumes.Find(id);
-            if (user == null)
+            if (id == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+
+                Resume details = db.Resumes
+                .Include(p => p.State)
+                .Include(p => p.Currency)
+                .Include(p => p.Schedule)
+                .Include(p => p.EmploymentName)
+                .Include(p => p.educationalLevel)
+                .Include(p => p.languageLevel)
+                .Include(p => p.language)
+                .Include(p => p.Source)
+                .Include(p => p.Gender).FirstOrDefault(p=>p.Id==id);
+
+            return View(details);
         }
 
         //public static class Network
