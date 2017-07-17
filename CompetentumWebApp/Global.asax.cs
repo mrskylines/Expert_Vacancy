@@ -13,7 +13,7 @@ namespace CompetentumWebApp
     {
         protected void Application_Start()
         {
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
+            //ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

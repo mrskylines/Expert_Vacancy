@@ -1,9 +1,68 @@
-﻿@model IEnumerable<CompetentumWebApp.Models.Resume>
+﻿@model IEnumerable<CompetentumWebApp.Models.Vacancy>
 
 @{
     ViewBag.Title = "Модуль \"Подбор персонала\"";
 }
 
+
+<p>
+    @Html.ActionLink("Добавить новую вакансию", "VacancyCreate")
+</p>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VacancyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VacancyState.VacancyStateName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VacancyCreationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VacancyInitiator)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VacancyRegion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VacancyGroup)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VacancyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VacancyState.VacancyStateName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VacancyCreationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VacancyInitiator)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VacancyRegion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VacancyGroup)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "VacancyEdit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "VacancyDetails", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "VacancyDelete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
 
 
     @section scripts {

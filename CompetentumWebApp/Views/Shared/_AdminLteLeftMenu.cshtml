@@ -37,24 +37,24 @@
             <li class="header">MAIN NAVIGATION</li>
             
             <li>
-                @Html.ActionLink("Открыть Базу Данных", "ResumeView")
-                @*<a href="Index">
-                    <i class="fa fa-table"></i> <span>Открыть Базу Данных</span>
-                </a>*@
+                <a href="@Url.Action("ResumeView", "AdminLte")">
+                    <i class="fa fa-table"></i> <span>База Данных Резюме</span>
+                </a>
             </li>
 
             <li>
-                <a href="#">
-                    <i class="fa fa-edit"></i> <span>Редактировать БД</span>
+                @*<a href="@Url.Action("Index", "AdminLte")">*@
+                <a href="@Url.Action("Index", "AdminLte")">
+                    <i class="fa fa-edit"></i> <span>База Данных Вакансий</span>
                 </a> 
             </li>
 
             <li>
-                @Html.ActionLink("Добавить резюме с HeadHunter", "HeadHunter")
+                @*@Html.ActionLink("Добавить резюме с HeadHunter", "HeadHunter")*@
 
-                @*<a href="#">
+                <a href="@Url.Action("HeadHunter", "AdminLte")">
                     <i class="fa fa-folder"></i> <span>Добавить резюме с HeadHunter</span>
-                </a>*@
+                </a>
             </li>
 
             @*<li class="active treeview">

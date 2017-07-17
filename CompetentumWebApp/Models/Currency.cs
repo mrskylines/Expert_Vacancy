@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,8 +12,11 @@ namespace CompetentumWebApp.Models
     {
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
+
+        [JsonProperty(PropertyName = "salary.currency")]
         [Display(Name = "Название валюты")]
         public string CurrencyName { get; set; }
+
         [Display(Name = "Аббревиатура валюты")]
         public string CurrencyAbbr { get; set; }
 

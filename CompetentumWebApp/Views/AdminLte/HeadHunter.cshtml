@@ -1,13 +1,226 @@
 ﻿@model CompetentumWebApp.Models.Resume
 
 @{
-    ViewBag.Title = "Резюме с HeadHunter";
+    ViewBag.Title = "HeadHunter";
 }
 
-< p > HH search </ p >
-< form method = "GET" action = "" >
-< input type = "text" name = "position" />
-< input type = "submit" value = "Просмотр резюме по id" />
-</ form >
+<h2>HeadHunter</h2>
 
+<div>
+    <h4>Resume</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ExternalId)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.ExternalId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SourceId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SourceId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StateId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StateId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InterviewDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InterviewDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Commentary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Commentary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.last_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.last_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.first_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.first_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.middle_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.middle_name)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.GenderId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GenderId)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.birth_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.birth_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CityName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CityName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MetroName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MetroName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpecializationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpecializationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.profarea_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.profarea_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalaryAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalaryAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrencyId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrencyId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmploymentNameId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmploymentNameId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ScheduleId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScheduleId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.educationalLevelId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.educationalLevelId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.languageId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.languageId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.languageLevelId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.languageLevelId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExperienceCompany)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExperienceCompany)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExperiencePosition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExperiencePosition)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.skills)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.skills)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

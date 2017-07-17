@@ -10,7 +10,6 @@ namespace CompetentumWebApp.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "CompetentumWebApp.Models.ResumeContext";
         }
 
         protected override void Seed(CompetentumWebApp.Models.ResumeContext context)

@@ -1,0 +1,71 @@
+﻿@model CompetentumWebApp.Models.Vacancy
+
+@{
+    ViewBag.Title = "VacancyDetails";
+}
+
+<div style="width:100%">
+    <h4>Основная информация по вакансии</h4>
+    <div class="table-responsive" style="width:45%">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th width=40%>
+                    @Html.DisplayNameFor(model => model.VacancyName)
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.VacancyName)
+                </td>
+            </tr>
+
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.VacancyState.VacancyStateName)
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.VacancyState.VacancyStateName)
+                </td>
+            </tr>
+
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.VacancyCreationDate)
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.VacancyCreationDate)
+                </td>
+            </tr>
+
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.VacancyInitiator)
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.VacancyInitiator)
+                </td>
+            </tr>
+
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.VacancyRegion)
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.VacancyRegion)
+                </td>
+            </tr>
+
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.VacancyGroup)
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.VacancyGroup)
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "VacancyEdit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

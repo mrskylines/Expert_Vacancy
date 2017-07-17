@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<CompetentumWebApp.Models.Resume>
+@using CompetentumWebApp.Models
 
 @{
     ViewBag.Title = "База данных резюме";
@@ -15,7 +16,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Gender.GenderName)
-                @Html.DisplayNameFor(model => model.gender_Name)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.birth_date)
@@ -30,7 +30,7 @@
                 @Html.DisplayNameFor(model => model.SalaryAmount)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Source)
+                @Html.DisplayNameFor(model => model.Source.SourceName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.State.StateName)
@@ -79,7 +79,7 @@
                     @Html.DisplayFor(modelItem => item.SalaryAmount)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Source)
+                    @Html.DisplayFor(modelItem => item.Source.SourceName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.State.StateName)
@@ -92,7 +92,10 @@
                 </td>
 
                 <td>
-                    @*нужны связанные вакансии*@
+                    @foreach (Vacancy c in item.Vacancies)
+                    {
+                        @c.VacancyName <br />
+                    }
                 </td>
 
                 <td>

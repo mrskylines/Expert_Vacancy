@@ -12,6 +12,7 @@ using System.Web.Mvc;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
+using Newtonsoft.Json;
 
 namespace AdminLteMvc.Controllers
 {
@@ -28,8 +29,92 @@ namespace AdminLteMvc.Controllers
         ResumeContext db = new ResumeContext();
         public ActionResult Index()
         {
+            var vacancies = db.Vacancies
+                .Include(v => v.VacancyState);
+            return View(vacancies.ToList());
+        }
+
+        [HttpGet]
+        public ActionResult VacancyCreate()//создание новой вакансии
+        {
+            SelectList Vacancystates = new SelectList(db.VacancyStates, "Id", "VacancyStateName");
+            ViewBag.VacancyStates = Vacancystates;
+
             return View();
         }
+
+        [HttpPost]
+        public ActionResult VacancyCreate(Vacancy newvacancy)//получаем введенные данные по вакансии
+        {
+            //Добавляем вакансию в таблицу
+            db.Vacancies.Add(newvacancy);
+            db.SaveChanges();
+            // перенаправляем на главную страницу
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult VacancyEdit(int? id)//получаем id редактируемой вакансии
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            // Находим в бд вакансию
+            Vacancy newvacancy = db.Vacancies.Find(id);
+            if (newvacancy != null)
+            {
+                SelectList Vacancystates = new SelectList(db.VacancyStates, "Id", "VacancyStateName");
+                ViewBag.VacancyStates = Vacancystates;
+
+                return View(newvacancy);
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult VacancyEdit(Vacancy newvacancy)//получаем введенные пользователем данные через модель Vacancy
+        {
+            db.Entry(newvacancy).State = EntityState.Modified;//устанавливаем для этой модели статус Modified
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult VacancyDetails(int? id)
+        {
+            Vacancy Vacancydetails = db.Vacancies.Find(id);
+
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            
+            //ViewBag.Vacancys = db.Vacancys.ToList();
+
+            return View(Vacancydetails);
+        }
+
+        [HttpGet]
+        public ActionResult VacancyDelete(int? id)//получаем id удаляемого резюме
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            // Находим в бд вакансию
+            Vacancy newvacancy = db.Vacancies.Find(id);
+            if (newvacancy != null)
+            {
+                db.Vacancies.Remove(newvacancy);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+
+        /// <summary>
+        /// //////////////////////////////////////////////////////////////          РЕЗЮМЕ          //////////////////////////////////////////////////////////////
+        /// </summary>
+        /// <returns></returns>
 
         public ActionResult ResumeView()
         {
@@ -43,12 +128,11 @@ namespace AdminLteMvc.Controllers
                 .Include(p => p.language)
                 .Include(p => p.Source)
                 .Include(p => p.Gender);
-                .Include(p => p.language);
             return View(resumes.ToList());
         }
 
         [HttpGet]
-        public ActionResult Create()//создание нового пользователя
+        public ActionResult Create()//создание нового резюме
         {
             SelectList states = new SelectList(db.States, "Id", "StateName");
             ViewBag.States = states;
@@ -77,30 +161,27 @@ namespace AdminLteMvc.Controllers
             SelectList genders = new SelectList(db.Genders, "Id", "GenderName");
             ViewBag.Genders = genders;
 
-            SelectList languages = new SelectList(db.language, "Id", "list_name");
-            ViewBag.languages = languages;
-
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(Resume user)//получаем пользователя - данные введенные пользователем
+        public ActionResult Create(Resume user)//получаем введенные данные
         {
             //Добавляем пользователя в таблицу
             db.Resumes.Add(user);
             db.SaveChanges();
-            // перенаправляем на главную страницу
+            // перенаправляем на страницу с БД Резюме
             return RedirectToAction("ResumeView");
         }
 
         [HttpGet]
-        public ActionResult Edit(int? id)//получаем id редактируемого пользователя
+        public ActionResult Edit(int? id)//получаем id редактируемого резюме
         {
             if (id == null)
             {
                 return HttpNotFound();
             }
-            // Находим в бд пользователя
+            // Находим в бд резюме
             Resume user = db.Resumes.Find(id);
             if (user != null)
             {
@@ -145,13 +226,13 @@ namespace AdminLteMvc.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int? id)//получаем id удаляемого пользователя
+        public ActionResult Delete(int? id)//получаем id удаляемого резюме
         {
             if (id == null)
             {
                 return HttpNotFound();
             }
-            // Находим в бд пользователя
+            // Находим в бд резюме
             Resume user = db.Resumes.Find(id);
             if (user != null)
             {
@@ -163,101 +244,67 @@ namespace AdminLteMvc.Controllers
 
         public ActionResult Details(int? id)
         {
+
+            Resume details = db.Resumes
+            .Include(p => p.State)
+            .Include(p => p.Currency)
+            .Include(p => p.Schedule)
+            .Include(p => p.EmploymentName)
+            .Include(p => p.educationalLevel)
+            .Include(p => p.languageLevel)
+            .Include(p => p.language)
+            .Include(p => p.Source)
+            .Include(p => p.Gender).FirstOrDefault(p => p.Id == id);
+
             if (id == null)
             {
                 return HttpNotFound();
             }
 
-                Resume details = db.Resumes
-                .Include(p => p.State)
-                .Include(p => p.Currency)
-                .Include(p => p.Schedule)
-                .Include(p => p.EmploymentName)
-                .Include(p => p.educationalLevel)
-                .Include(p => p.languageLevel)
-                .Include(p => p.language)
-                .Include(p => p.Source)
-                .Include(p => p.Gender).FirstOrDefault(p=>p.Id==id);
-
             return View(details);
         }
 
-        //public static class Network
+        //private static readonly HttpClient client = new HttpClient();
+
+        //[HttpGet]
+        //public ActionResult HeadHunter()//добавление нового резюме с HeadHunter
         //{
-        //    public static object HttpContext { get; private set; }
-
-        //    public static void AllowInvalidCertificate()
+        //    string url = "https://api.hh.ru/resumes/cf8969d20003d712b50039ed1f464731504c58";
+        //    using (var webClient = new WebClient())
         //    {
-        //        if (HttpContext.Current.Request.Url.Host == “localhost”)
-        //        {
-        //            ServicePointManager.ServerCertificateValidationCallback += new RemoteCertificateValidationCallback(allowCert);
-        //        }
+        //        webClient.QueryString.Add("format", "json");
+        //        // Выполняем запрос по адресу и получаем ответ в виде строки
+
+        //        webClient.Headers.Add("User-Agent: troc-nikitaApp/1.0 (troc-nikita@yandex.com)");
+        //        // Выполняем запрос по адресу и получаем ответ в виде строки
+        //        webClient.Encoding = System.Text.Encoding.UTF8;
+
+        //        var response = webClient.DownloadString(url);
+
+        //        Resume user = new Resume();
+
+        //        user = JsonConvert.DeserializeObject<Resume>(response);
         //    }
 
-        //    private static bool allowCert(object sender, X509Certificate cert, X509Chain chain, SslPolicyErrors error)
-        //    {
-        //        return true;
-        //    }
+        //    return View();
         //}
 
-
-        private static readonly HttpClient client = new HttpClient();
-        
-        //public async Task<ActionResult> HeadHunter()//создание нового пользователя
-        [HttpGet]
-        public ActionResult HeadHunter()//создание нового пользователя
-        {
-            /* https://api.hh.ru/specializations */
-
-
-
-            //ServicePointManager.ServerCertificateValidationCallback +=
-            //delegate (object sender, X509Certificate certificate, X509Chain chain,
-            //       SslPolicyErrors sslPolicyErrors)
-            //{
-            //    return true;
-            //};
-            //WebClient client = new WebClient();
-            //var data = client.DownloadString("https://api.hh.ru/resumes/429a025c0002c417ac0039ed1f325a56626932");
-
-            string url = "https://api.hh.ru/resumes/429a025c0002c417ac0039ed1f325a56626932";
-            //using (var webClient = new WebClient())
-            //{
-            //    webClient.QueryString.Add("format", "json");
-            //    // Выполняем запрос по адресу и получаем ответ в виде строки
-            //    var response = webClient.DownloadString(url);
-            //}
-
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream resStream = response.GetResponseStream();
-
-            //var responseString = await client.GetStringAsync("https://api.hh.ru/resumes/429a025c0002c417ac0039ed1f325a56626932");
-            /* https://api.hh.ru/resumes/429a025c0002c417ac0039ed1f325a56626932 https://api.hh.ru/vacancies/18118213  */
-            /* http://ip.jsontest.com/ */
-
-            //var idResume = "429a025c0002c417ac0039ed1f325a56626932";
-            //var urlString = "https://api.hh.ru/resumes/" + idResume.ToString();
-            //var responseString = await urlString.GetStringAsync();
-            return View();
-        }
-
         //[HttpPost]
-        //public async Task<ActionResult> HeadHunte(Resume user)//получаем пользователя - данные введенные пользователем
+        //public ActionResult HeadHunter(Resume user)//получаем пользователя - данные введенные пользователем
         //{
-        //var responseString = await "http://www.example.com/recepticle.aspx".PostUrlEncodedAsync(new { thing1 = "hello", thing2 = "world" }).ReceiveString();
+        //    //var responseString = await "http://www.example.com/recepticle.aspx".PostUrlEncodedAsync(new { thing1 = "hello", thing2 = "world" }).ReceiveString();
         //    //Добавляем пользователя в таблицу
         //    db.Resumes.Add(user);
         //    db.SaveChanges();
         //    // перенаправляем на главную страницу
-        //    return RedirectToAction("Index");
+        //    return RedirectToAction("ResumeView");
         //}
 
-        /// <summary>
-        /// The color page of the AdminLTE demo, demonstrating the AdminLte.Color enum and supporting methods
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Colors()
+    /// <summary>
+    /// The color page of the AdminLTE demo, demonstrating the AdminLte.Color enum and supporting methods
+    /// </summary>
+    /// <returns></returns>
+    public ActionResult Colors()
         {
             return View();
         }

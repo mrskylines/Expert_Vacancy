@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace CompetentumWebApp.Models
         public int Id { get; set; }
         [HiddenInput(DisplayValue = false)]
         public string Id_name { get; set; }
+
+        [JsonProperty(PropertyName = "schedules[].name")]
         [Display(Name = "График работы")]
         public string ScheduleName { get; set; }
 
