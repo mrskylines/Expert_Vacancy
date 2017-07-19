@@ -261,7 +261,16 @@
     <Compile Include="Migrations\201707171413045_deleted gender id string field.Designer.cs">
       <DependentUpon>201707171413045_deleted gender id string field.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707190953361_added table commentaries.cs" />
+    <Compile Include="Migrations\201707190953361_added table commentaries.Designer.cs">
+      <DependentUpon>201707190953361_added table commentaries.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707191048036_deleted table commentaries.cs" />
+    <Compile Include="Migrations\201707191048036_deleted table commentaries.Designer.cs">
+      <DependentUpon>201707191048036_deleted table commentaries.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Commentary.cs" />
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\educationalLevel.cs" />
     <Compile Include="Models\EmploymentName.cs" />
@@ -1042,6 +1051,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707171413045_deleted gender id string field.resx">
       <DependentUpon>201707171413045_deleted gender id string field.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707190953361_added table commentaries.resx">
+      <DependentUpon>201707190953361_added table commentaries.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707191048036_deleted table commentaries.resx">
+      <DependentUpon>201707191048036_deleted table commentaries.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

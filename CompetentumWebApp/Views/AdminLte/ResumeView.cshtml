@@ -94,7 +94,7 @@
                 <td>
                     @foreach (Vacancy c in item.Vacancies)
                     {
-                        @c.VacancyName <br />
+                        @Html.ActionLink(@c.VacancyName, "VacancyDetails", new { id = c.Id })<br />
                     }
                 </td>
 
