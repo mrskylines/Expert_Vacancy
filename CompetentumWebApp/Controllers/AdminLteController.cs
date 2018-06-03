@@ -13,6 +13,10 @@ using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 using Newtonsoft.Json;
+using System.Web.UI.WebControls;
+using System.Web.UI;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
 
 namespace AdminLteMvc.Controllers
 {
@@ -264,47 +268,43 @@ namespace AdminLteMvc.Controllers
             return View(details);
         }
 
-        //private static readonly HttpClient client = new HttpClient();
+        public ActionResult ExportToExcel()
+        {
+            var gv = new GridView();
+            gv.DataSource = (from e in db.Vacancies
+                             join d in db.VacancyStates on e.VacancyStateId equals d.Id
+                             select new ExcelModel
+                             {
+                                 ID = e.Id,
+                                 VacName = e.VacancyName,
+                                 VacState = d.VacancyStateName,
+                                 VacCreationDate = e.VacancyCreationDate,
+                                 VacInititator = e.VacancyInitiator,
+                                 VacRegion = e.VacancyRegion,
+                                 VacGroup = e.VacancyGroup
+                             }).ToList();
+            
+            gv.DataBind();
+            Response.ClearContent();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment; filename=DemoExcel.xls");
+            Response.ContentType = "application/ms-excel";
+            Response.ContentEncoding = System.Text.Encoding.Unicode;
+            Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble());
+            StringWriter objStringWriter = new StringWriter();
+            HtmlTextWriter objHtmlTextWriter = new HtmlTextWriter(objStringWriter);
+            gv.RenderControl(objHtmlTextWriter);
+            Response.Output.Write(objStringWriter.ToString());
+            Response.Flush();
+            Response.End();
+            return RedirectToAction("Index");
+        }
 
-        //[HttpGet]
-        //public ActionResult HeadHunter()//добавление нового резюме с HeadHunter
-        //{
-        //    string url = "https://api.hh.ru/resumes/cf8969d20003d712b50039ed1f464731504c58";
-        //    using (var webClient = new WebClient())
-        //    {
-        //        webClient.QueryString.Add("format", "json");
-        //        // Выполняем запрос по адресу и получаем ответ в виде строки
-
-        //        webClient.Headers.Add("User-Agent: troc-nikitaApp/1.0 (troc-nikita@yandex.com)");
-        //        // Выполняем запрос по адресу и получаем ответ в виде строки
-        //        webClient.Encoding = System.Text.Encoding.UTF8;
-
-        //        var response = webClient.DownloadString(url);
-
-        //        Resume user = new Resume();
-
-        //        user = JsonConvert.DeserializeObject<Resume>(response);
-        //    }
-
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public ActionResult HeadHunter(Resume user)//получаем пользователя - данные введенные пользователем
-        //{
-        //    //var responseString = await "http://www.example.com/recepticle.aspx".PostUrlEncodedAsync(new { thing1 = "hello", thing2 = "world" }).ReceiveString();
-        //    //Добавляем пользователя в таблицу
-        //    db.Resumes.Add(user);
-        //    db.SaveChanges();
-        //    // перенаправляем на главную страницу
-        //    return RedirectToAction("ResumeView");
-        //}
-
-    /// <summary>
-    /// The color page of the AdminLTE demo, demonstrating the AdminLte.Color enum and supporting methods
-    /// </summary>
-    /// <returns></returns>
-    public ActionResult Colors()
+            /// <summary>
+            /// The color page of the AdminLTE demo, demonstrating the AdminLte.Color enum and supporting methods
+            /// </summary>
+            /// <returns></returns>
+        public ActionResult Colors()
         {
             return View();
         }
